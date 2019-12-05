@@ -66,6 +66,7 @@ class WordPair {
   String word1;
   String word2;
   String asPascalCase;
+  static final _random = new Random();
   
   WordPair(this.word1, this.word2) {
     this.asPascalCase = 
@@ -73,17 +74,21 @@ class WordPair {
       this.word2[0].toUpperCase() + 
       this.word2.substring(1).toLowerCase();
   }
+  
+  static WordPair random() {
+    final index1 = _random.nextInt(mostCommonAdjectives.length);
+    final index2 = _random.nextInt(mostCommonNouns.length);
+    final word1 = mostCommonAdjectives[index1];
+    final word2 = mostCommonNouns[index2];
+    return WordPair(word1, word2);
+  }
 }
 
 class RandomWordPairIterator extends Iterator<WordPair> {
   WordPair current;
   final _random = new Random();
   bool moveNext() {
-    final index1 = _random.nextInt(mostCommonAdjectives.length);
-    final index2 = _random.nextInt(mostCommonNouns.length);
-    final word1 = mostCommonAdjectives[index1];
-    final word2 = mostCommonNouns[index2];
-    this.current = WordPair(word1, word2);
+    this.current = WordPair.random();
     return true;
   }
 }
