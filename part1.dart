@@ -79,9 +79,10 @@ class RandomWordPairIterator extends Iterator<WordPair> {
   WordPair current;
   final _random = new Random();
   bool moveNext() {
-    final index = _random.nextInt(50);
-    final word1 = mostCommonAdjectives[index];
-    final word2 = mostCommonNouns[index];
+    final index1 = _random.nextInt(mostCommonAdjectives.length);
+    final index2 = _random.nextInt(mostCommonNouns.length);
+    final word1 = mostCommonAdjectives[index1];
+    final word2 = mostCommonNouns[index2];
     this.current = WordPair(word1, word2);
     return true;
   }
